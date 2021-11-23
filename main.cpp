@@ -9,6 +9,17 @@ int main()
 
     while (!WindowShouldClose())
     {
+        // Set mouse scale for GetMousePosition() or GetMouseX() or GetMouseY()
+        {
+            float mx = 1920.f / (float)GetScreenWidth();
+            float my = 1080.f / (float)GetScreenHeight();
+
+            if (mx > my) mx = my;
+            else if (my > mx) my = mx;
+
+            SetMouseScale(mx, my);
+        }
+        
         BeginTextureMode(texture);
             ClearBackground(RAYWHITE);
             DrawText("Hello World!", 50, 50, 40, LIGHTGRAY);
@@ -16,24 +27,21 @@ int main()
         
         BeginDrawing();
             ClearBackground(BLACK);
-            
-            float x = (float)GetScreenWidth() / 1920.f;
-            float y = (float)GetScreenHeight() / 1080.f;
-
-            if (x > y)
+        
+            // Set output scale for DrawTexturePro
             {
-                x = y;
-            }
-            else if (y > x)
-            {
-                y = x;
-            }
+                float x = (float)GetScreenWidth() / 1920.f;
+                float y = (float)GetScreenHeight() / 1080.f;
 
-            float outWidth = 1920.f * x;
-            float outHeight = 1080.f * y;
+                if (x > y) x = y;
+                else if (y > x) y = x;
 
-            float posx = ((float)GetScreenWidth() - outWidth) / 2.f;
-            float posy = ((float)GetScreenHeight() - outHeight) / 2.f;
+                float outWidth = 1920.f * x;
+                float outHeight = 1080.f * y;
+
+                float posx = ((float)GetScreenWidth() - outWidth) / 2.f;
+                float posy = ((float)GetScreenHeight() - outHeight) / 2.f;
+            }
             
             DrawTexturePro(texture.texture,
                             { 0, 0, (float)texture.texture.width, -(float)texture.texture.height },
