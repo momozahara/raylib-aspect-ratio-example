@@ -41,14 +41,14 @@ int main()
 
                 float posx = ((float)GetScreenWidth() - outWidth) / 2.f;
                 float posy = ((float)GetScreenHeight() - outHeight) / 2.f;
-            }
             
-            DrawTexturePro(texture.texture,
-                            { 0, 0, (float)texture.texture.width, -(float)texture.texture.height },
-                            { posx, posy, outWidth, outHeight },
-                            { 0, 0 },
-                            0.f,
-                            WHITE);
+                DrawTexturePro(texture.texture,
+                                { 0, 0, (float)texture.texture.width, -(float)texture.texture.height },
+                                { posx, posy, outWidth, outHeight },
+                                { 0, 0 },
+                                0.f,
+                                WHITE);
+            }
 
         EndDrawing();
     }
